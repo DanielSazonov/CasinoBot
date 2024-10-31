@@ -23,7 +23,7 @@ def main_menu(lang, chat_id):
 
     welcome_message = "🎰 Выберите стратегию для игры:" if lang == 'ru' else "🎰 Choose your game strategy:"
 
-    with open(f'C:/Users/MrSok/PycharmProjects/CasinoBot/images/fishki.jpg', 'rb') as photo:
+    with open(f'CasinoBot/images/fishki.jpg', 'rb') as photo:
         bot.send_photo(chat_id=chat_id, photo=photo, caption=welcome_message, reply_markup=markup)
 
 
@@ -40,7 +40,7 @@ def start_command(message):
     user_language.pop(message.chat.id, None)
     msg = bot.send_photo(
         message.chat.id,
-        open('C:/Users/MrSok/PycharmProjects/CasinoBot/images/flags 2.jpg', 'rb'),
+        open('images/flags 2.jpg', 'rb'),
         caption="🌍 Пожалуйста, выберите язык / Please choose your language:",
         reply_markup=language_menu()
     )
@@ -59,7 +59,7 @@ def send_welcome(chat_id, lang):
                                        callback_data='go_to_strategies')
     markup.add(next_button)
 
-    with open('C:/Users/MrSok/PycharmProjects/CasinoBot/images/welcome_image.jpg', 'rb') as photo:
+    with open('images/welcome_image.jpg', 'rb') as photo:
         msg = bot.send_photo(chat_id, photo, caption=welcome_text, reply_markup=markup)
         welcome_message_id[chat_id] = msg.message_id
 
@@ -104,7 +104,7 @@ def send_strategy(call, strategy_name):
     }
 
     game_name, strategy_url, image_name = strategies[strategy_name]
-    image_path = f'C:/Users/MrSok/PycharmProjects/CasinoBot/images/{image_name}'
+    image_path = f'images/{image_name}'
     lang = user_language[call.message.chat.id]
 
     markup = InlineKeyboardMarkup()
